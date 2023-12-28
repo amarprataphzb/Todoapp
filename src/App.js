@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <div>
         <h1>
-          TO DO APP
+          TO DO APP in react js
         </h1>
       </div>
       <TodoApp/>

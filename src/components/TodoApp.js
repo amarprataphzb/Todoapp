@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 
 function TodoApp() {
   const [value, setValue] = useState("");
@@ -50,33 +52,45 @@ function TodoApp() {
   
 
   return (
-    <div>
-      <div>
-        <input type="text" value={value} onChange={handleChange} />
-        <button onClick={handleList}>Add</button>
-      </div>
+    <div style={{width:'400px' ,margin:'auto' ,height:'400px' }}>
+      
+      <div className="input-group">
+        <input className="form-control" type="text" value={value} onChange={handleChange} />
+        <Button  variant="primary"  className ="lg" onClick={handleList}>Add</Button>
 
+      </div>
+      <hr />
       <div>
-        <div>
-          <h3>Total Number of Task : {list.length}</h3>
-          { showbutton ? <button onClick={showHidebutton}>Hide</button> :<button onClick={showHidebutton}>show</button>}
-         
-          
+        <div >
+          <h3 className="mt-4" >Total Number of Task : {list.length}</h3>
+          { showbutton ? <Button  variant="success" className="mb-2" onClick={showHidebutton}>Hide</Button> :<Button variant="success" className="mb-2" onClick={showHidebutton}>show</Button>}  
         </div>
+
+       
+        
         {
-          editClick  ?  <div>
-          <input type="text" onChange={handleEditInput}/>
-          <button onClick={()=> updateValue()}>Submit</button>
+          editClick  ?  <div className="input-group">
+          <input   className="form-control" type="text" onChange={handleEditInput}/>
+          <Button className="mb-2" onClick={()=> updateValue()}>Submit</Button>
           </div> :<div></div>
 
         }
        
        { showbutton ? <div> {list.map((item, index) => (
-          <div>
-            {index + 1}.  {item}
-            <button onClick={() => editFromList(index)}>Edit</button>
-            <button onClick={() => deletefromlist(index)}>Delete</button>
-          </div>
+          
+             <Table striped bordered hover>
+        
+          <tbody>
+            <tr>
+              <td> {index + 1}</td>
+              <td>{item}</td>
+              <td>  <Button variant="warning"  className="me-4" onClick={() => editFromList(index)}>Edit</Button>
+            <Button variant="danger" onClick={() => deletefromlist(index)}>Delete</Button></td>
+            </tr>
+          </tbody>
+
+        </Table> 
+   
         ))}</div>   :<div></div>}
       
        
